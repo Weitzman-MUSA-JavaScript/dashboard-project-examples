@@ -2,7 +2,7 @@
 
 ## Samples
 
-- [School Explorer for Philadelphia Parents](sample/school-explorer-for-parents/)
+- [School Explorer for Philadelphia Parents](sample/school-explorer-for-parents/site/)
 - [Indego Bikeshare availability](sample/bikeshare-availability/)
 
 ## 2023
