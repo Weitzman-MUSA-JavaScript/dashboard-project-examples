@@ -1,5 +1,10 @@
 # Examples from prior MUSA 6110
 
+## Samples
+
+- [School Explorer for Philadelphia Parents](sample/school-explorer-for-parents/)
+- [Indego Bikeshare availability](sample/bikeshare-availability/)
+
 ## 2023
 - [Junyi Yang - Philadelphia Park Lead Levels](2023/junyi-yang/) ([source code](https://github.com/junyi2022/Philly-park-lead-level-dashboard/))
 - [Xiaofan Lu - Philadelphia Crime Incidents](2023/xiaofan-liu/) ([source code](https://github.com/xxiaofan-98/dashboard-project/))
