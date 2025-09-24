@@ -5,7 +5,8 @@ function startGeolocation(events) {
   }
 
   function handlePositionError(err) {
-    console.error('Failed to get position!', err);
+    console.error('Failed to get position! Stopping.', err);
+    navigator.geolocation.clearWatch(geolocationId);
   }
 
   const geolocationId = navigator.geolocation.watchPosition(handlePositionSuccess, handlePositionError, {enableHighAccuracy: true});

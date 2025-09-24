@@ -57,26 +57,30 @@ async function downloadStationBikes() {
 async function updateStationStatuses(stations) {
   const statuses = await downloadStationStatuses();
   const bikes = await downloadStationBikes();
-  const reports = await getStationReports();
+  try {
+    const reports = await getStationReports();
 
-  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
 
-  // Attach the reports to the station statuses.
-  reports.forEach((report) => {
-    const stationId = report.data().station_id;
-    const status = statuses[stationId];
-    status.reports ||= [];
+    // Attach the reports to the station statuses.
+    reports.forEach((report) => {
+      const stationId = report.data().station_id;
+      const status = statuses[stationId];
+      status.reports ||= [];
 
-    // TODO: This filtering should be done when we query
-    // for the reports in Firestore. To filter it here,
-    // we're downloading ALL the reports every time. Over
-    // time, that could become a lot of data to download.
-    if (report.data().timestamp.toDate() > oneHourAgo) {
-      status.reports.push(report.data());
-    }
+      // TODO: This filtering should be done when we query
+      // for the reports in Firestore. To filter it here,
+      // we're downloading ALL the reports every time. Over
+      // time, that could become a lot of data to download.
+      if (report.data().timestamp.toDate() > oneHourAgo) {
+        status.reports.push(report.data());
+      }
 
-    console.log(status);
-  });
+      console.log(status);
+    });
+  } catch (err) {
+    console.error('Failed to load station reports:', err);
+  }
 
   // Attach the detailed bike information to the station statuses.
   for (const [stationId, status] of Object.entries(statuses)) {
